@@ -1,0 +1,48 @@
+@CHARSET "ISO-8859-1";
+
+.mockbg {
+	background-color: black;
+	color: white;
+}
+
+.yellowDot {
+	border-bottom: dotted 1px;
+	border-color: yellow;
+	color: yellow;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.whiteHeader {
+	color: black;
+	background-color: white;
+	font-weight: bold;
+	text-align: center;
+}
+
+.table {
+        width: 80%;
+	margin-top: 5%;
+	margin-left: auto; margin-right : auto;
+	font-size: 24px;
+	border-spacing: 10px;
+}
+
+
+.secondHeader{
+    text-align: end;
+    width: 10%;
+    background-color: green;
+}
+
+.secondField{
+    width:40%;
+}
+
+.underlined {
+	text-decoration:underline;
+}
+
+.centered {
+	text-align:center;
+}

@@ -1,0 +1,39 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 14, 2014, 1:45:34 PM
+    Author     : sam
+*/
+
+.shell{
+    
+}
+
+input[type=text] {
+    font-size:24px
+}
+
+.data{
+   margin: 40px auto;
+   width:1200px;
+}
+
+.mediumFont {
+    font-size:24px;
+}
+
+.column1 {
+    width:14%
+}
+.column2 {
+    width:51%;
+}
+.column3 {
+    width:15%;
+}
+.column4{
+    width:20%;
+}

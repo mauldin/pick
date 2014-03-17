@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Mock</title>
+        <h:outputScript library="primefaces" name="jquery/jquery.js" />
+        <h:outputScript library="js" name="mock.js" />
+        <h:outputStylesheet library="css" name="mock.css"/>
+    </h:head>
+    <h:body styleClass="mockbg">
+        <h:form>
+            <table class="table">
+                <tr>
+                    <td>Date:</td>
+                    <td class="yellowDot"><h:outputText value="#{misc.date}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" type="date" />
+                        </h:outputText></td>
+                    <td class="whiteHeader">OLD DOMINION FREIGHT LINE, INC.</td>
+                    <td>Pgm:</td>
+                    <td class="yellowDot">Something</td>
+                </tr>
+                <tr>
+                    <td>Time:</td>
+                    <td class="yellowDot"><h:outputText value="#{misc.date}">
+                            <f:convertDateTime pattern="HH:mm:ss z" type="time"
+                                               timeZone="US/Eastern" />
+                        </h:outputText></td>
+                    <td class="underlined centered">Pick Up Sheet Update</td>
+                    <td>User:</td>
+                    <td class="yellowDot">user todo</td>
+                </tr>
+            </table>
+
+            <table class="table">
+                <col class="secondHeader"/>
+                <col class="secondField"/>
+                <col class="secondHeader"/>
+                <col class="secondField"/>
+                <tr>
+                    <td>Shipper:</td>
+                    <td><h:inputText value="#{pickupBean.shipper.shippername}" /></td>
+                    <td>Phone:</td>
+                    <td><h:inputText value="#{pickupBean.shipper.phone}" /></td>
+                </tr>
+                <tr>
+                    <td>Address1:</td>
+                    <td><h:inputText value="shipper.addressOne" /></td>
+                    <td>Cust Number:</td>
+                    <td><h:inputText value="#{pickupBean.shipper.shipperid}" /></td>
+                </tr>
+                <tr>
+                    <td>Adress2:</td>
+                    <td><h:inputText value="shipper.addressTwo" /></td>
+                    <td>Route:</td>
+                    <td><h:inputText value="#{pickupBean.shipper.route}" /></td>
+                </tr>
+                <tr>
+                    <td>Ct/St/Zp:</td>
+                    <td><h:inputText value="shipper.addressInfo" /></td>
+                    <td>Credit:</td>
+                    <td><h:inputText value="#{pickupBean.shipper.credit}" /></td>
+                </tr>
+            </table>
+            <h:commandButton id="submit" value="Click">
+                <f:ajax listener="#{pickupBean.fetchShipper}" render="@form" />
+            </h:commandButton>
+        </h:form>
+    </h:body>
+</html>
