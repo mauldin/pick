@@ -8,5 +8,13 @@
       http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
 
    <!-- Write your navigation rules here. You are encouraged to use CDI for creating @Named managed beans. -->
-
+<!--    <navigation-rule>
+        <from-view-id>/shipperInfoEntryScreen.xhtml</from-view-id>
+        <navigation-case>
+            <description>Test</description>
+            <from-action>#{PickupBean.next}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pickUpSheetUpdate.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>-->
 </faces-config>

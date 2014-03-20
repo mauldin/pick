@@ -8,7 +8,6 @@ package com.odfl.managed;
 
 import com.odfl.data.ShippingBean;
 import com.odfl.model.Caller;
-import com.odfl.model.Shipper;
 import com.odfl.model.Shippickup;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
@@ -34,14 +33,13 @@ public class PickupBean implements Serializable {
 
     @Inject
     private Conversation conversation;
-
-    private Shippickup ship;
-
-    private Caller caller;
     
     @EJB
     private ShippingBean shipEjb;
 
+    private Shippickup ship;
+    private Caller caller;
+    
     public Shippickup getShip() {
         return ship;
     }
@@ -61,11 +59,12 @@ public class PickupBean implements Serializable {
     @PostConstruct
     public void initShipper() {
         System.out.println("DANGER DANGER BROOOOOOOOOOOO");
-        //shipper = new Shipper();
+        ship = new Shippickup();
+        caller = new Caller();
     }
 
     public void fetchShipper(AjaxBehaviorEvent event) {
-        //shipper = shipEjb.execute(1);
+        ship.setShipperid(shipEjb.execute(1));
     }
 
     public Conversation getConversation() {
@@ -73,9 +72,10 @@ public class PickupBean implements Serializable {
     }
 
     public void initConversation() {
+        System.out.println("yo");
         if (!FacesContext.getCurrentInstance().isPostback()
                 && conversation.isTransient()) {
-
+            System.out.println("init");
             conversation.begin();
         }
     }
@@ -85,5 +85,11 @@ public class PickupBean implements Serializable {
             conversation.end();
         }
         return "shipperInfoEntryScreen?faces-redirect=true";
+    }
+    
+    public String nextPage() {
+        initConversation();
+        System.out.println(";/");
+        return "mock?faces-redirect=true";
     }
 }

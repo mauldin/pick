@@ -15,6 +15,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -23,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author sam
  */
 @Entity
-@Table(name = "CALLER")
+@Table(name = "CALLER", schema = "SAM")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Caller.findAll", query = "SELECT c FROM Caller c"),
@@ -41,17 +42,18 @@ public class Caller implements Serializable {
     private Integer callerid;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 20, message = "caller's first name must be between 1-20 characters long")
     @Column(name = "FIRSTNAME")
     private String firstname;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 20, message = "caller's first name must be between 1-20 characters long")
     @Column(name = "LASTNAME")
     private String lastname;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 12)
+    @Pattern(regexp="(\\d{3}-){2}\\d{4}", message="caller's phone number's format is invalid, should be as xxx-xxx-xxxx")
     @Column(name = "PHONENUM")
     private String phonenum;
     @Column(name = "SHIPPERID")

@@ -5,8 +5,6 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-    <f:event listener="#{pickupBean.initConversation}"
-             type="preRenderView"></f:event>
     <h:head>
         <title>Shipper Information Entry Screen</title>
         <h:outputScript library="primefaces" name="jquery/jquery.js" />
@@ -14,144 +12,171 @@
         <h:outputStylesheet library="css" name="mock.css"/>
     </h:head>
     <h:body>
-        <table class="data mediumFont">
-            <tr>
-                <td>Date:</td>
-                <td><h:outputText value="#{misc.date}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" type="date" />
-                    </h:outputText></td>
-                <td class="centered">OLD DOMINION FREIGHT LINE, INC.</td>
-                <td>Pgm:</td>
-                <td>Something</td>
-            </tr>
-            <tr>
-                <td>Time:</td>
-                <td><h:outputText value="#{misc.date}">
-                        <f:convertDateTime pattern="HH:mm:ss z" type="time"
-                                           timeZone="US/Eastern" />
-                    </h:outputText></td>
-                <td class="centered">Pick Up Sheet Update</td>
-                <td>User:</td>
-                <td>user todo</td>
-            </tr>
-        </table>
-        <table class="data mediumFont">
-            <tr>
-                <td class="column1">
-                    <h:outputText value="Caller Name:"/>
-                </td>
-                <td class="column2">
-                    <h:inputText value="#{pickupBean.caller.firstname}"/>
-                    <h:inputText value="#{pickupBean.caller.lastname}"/> 
-                </td>
-                <td class="column3">
-                    <h:outputText value="Caller"/>
-                </td>
-                <td class="column4">
-                    <h:inputText value="#{pickupBean.caller.phonenum}"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Telephone:
-                </td>
-                <td>
-                    <h:inputText value="#{pickupBean.shipper.phone}"/>
-                </td>
-                <td>
-                    Account #:
-                </td>
-                <td>
-                    <h:inputText value="#{pickupBean.shipper.shipperid}"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Name:
-                </td>
-                <td>
-                    <h:inputText value="#{pickupBean.shipper.shippername}"/>
-                </td>
-                <td>
-                    S/C:
-                </td>
-                <td>
-                    <h:inputText value="sc"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Address 1:
-                </td>
-                <td>
-                    <h:inputText value="#{pickupBean.shipper.addressid.addressone}"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Address 2:
-                </td>
-                <td>
-                    <h:inputText value="#{pickupBean.shipper.addressid.addresstwo}"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    City/St/Zp:
-                </td>
-                <td>
-                    <h:inputText value="#{pickupBean.shipper.addressid.city}" size="20"/>
-                    <h:inputText value="#{pickupBean.shipper.addressid.stateid.stateid}" maxlength="3" size="3"/>
-                    <h:inputText value="#{pickupBean.shipper.addressid.zip}" maxlength="10" size="10"/>
-                </td>
-            </tr>
-        </table>
+        <h:form>
+            <table class="data mediumFont">
+                <tr>
+                    <td>Date:</td>
+                    <td><h:outputText value="#{misc.date}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" type="date" />
+                        </h:outputText></td>
+                    <td class="centered">OLD DOMINION FREIGHT LINE, INC.</td>
+                    <td>Pgm:</td>
+                    <td>Something</td>
+                </tr>
+                <tr>
+                    <td>Time:</td>
+                    <td><h:outputText value="#{misc.date}">
+                            <f:convertDateTime pattern="HH:mm:ss z" type="time"
+                                               timeZone="US/Eastern" />
+                        </h:outputText></td>
+                    <td class="centered">Pick Up Sheet Update</td>
+                    <td>User:</td>
+                    <td>user todo</td>
+                </tr>
+            </table>
+            <h:messages class="message"/>
+            <table class="data mediumFont" >
+                <tr>
+                    <td class="column1">
+                        <h:outputText value="Caller Name:"/>
+                    </td>
+                    <td class="column2">
+<!--                        <f:validateBean disabled="true">-->
+                            <h:inputText id="cfirstnm" value="#{pickupBean.caller.firstname}" required="false"/>
+                            <h:inputText id="clastnm" value="#{pickupBean.caller.lastname}" required="false"/> 
+<!--                        </f:validateBean>-->
+                        <p:watermark for="cfirstnm" value="First Name"/>
+                        <p:watermark for="clastnm" value="Last Name"/>
+                    </td>
+                    <td class="column3">
+                        <h:outputText value="Caller Phone #"/>
+                    </td> 
+                    <td class="column4">
+                        <h:inputText value="#{pickupBean.caller.phonenum}" required="false"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Telephone:
+                    </td>
+                    <td>
+                        <h:inputText value="#{pickupBean.ship.shipperid.phone}"/>
+                    </td>
+                    <td>
+                        Account #:
+                    </td>
+                    <td>
+                        <h:inputText value="#{pickupBean.ship.shipperid.shipperid}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Name:
+                    </td>
+                    <td>
+                        <h:inputText value="#{pickupBean.ship.shipperid.shippername}"/>
+                    </td>
+                    <td>
+                        S/C:
+                    </td>
+                    <td>
+                        <h:inputText value="???"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Address 1:
+                    </td>
+                    <td>
+                        <h:inputText value="#{pickupBean.ship.shipperid.addressid.addressone}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Address 2:
+                    </td>
+                    <td>
+                        <h:inputText value="#{pickupBean.ship.shipperid.addressid.addresstwo}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        City/St/Zp:
+                    </td>
+                    <td>
+                        <h:inputText value="#{pickupBean.ship.shipperid.addressid.city}" size="20"/>
+                        <h:inputText value="#{pickupBean.ship.shipperid.addressid.stateid.stateid}" maxlength="3" size="3"/>
+                        <h:inputText value="#{pickupBean.ship.shipperid.addressid.zip}" maxlength="10" size="10"/>
+                    </td>
+                </tr>
+            </table>
 
-        <hr/>
+            <hr/>
 
-        <table class="data mediumFont">
-            <tr>
-                <td>
-                    Contact:
-                </td>
-                <td>
-                    <h:inputText value="#{pickupBean.shipper.contactid.firstname}"/>
-                    <h:inputText value="#{pickupBean.shipper.contactid.lastname}"/>
-                </td>
-                <td>
-                    Fax #: <br/>
-                    Ext:
-                </td>
-                <td>
-                    <h:inputText value="#{pickupBean.shipper.contactid.fax}"/> <br/>
-                    <h:inputText value="#{pickupBean.shipper.contactid.ext}"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Rquested P/U Dt:
-                </td>
-                <td>
-                    <p:calendar value="#{calendarBean.date3}" id="popupButtonCal" showOn="button" />  
-                </td>
-                <td>
-                    Shipping Times
-                </td>
-                <td>
-                    <h:inputText value="#{pickupBean.ship.startshiptime}"/> to <h:inputText value="#{pickupBean.ship.endshiptime}"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Secondary Number:
-                </td>
-                <td>
-                    <h:inputText value="#{pickupBean.ship.secondarynum}"/>
-                </td>
-            </tr>
-            <tr/>
-            <tr>
-        </table>
+            <table class="data mediumFont">
+                <tr>
+                    <td class="c2-1">
+                        Contact:
+                    </td>
+                    <td class="c2-2">
+                        <h:inputText value="#{pickupBean.ship.shipperid.contactid.firstname}"/>
+                        <h:inputText value="#{pickupBean.ship.shipperid.contactid.lastname}"/>
+                    </td>
+                    <td class="c2-3">
+                        Fax #: <br/>
+                        Ext:
+                    </td>
+                    <td class="c2-4">
+                        <h:inputText value="#{pickupBean.ship.shipperid.contactid.fax}"/> <br/>
+                        <h:inputText value="#{pickupBean.ship.shipperid.contactid.ext}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Rquested P/U Dt:
+                    </td>
+                    <td>
+                        <p:calendar value="#{pickupBean.ship.requesteddt}" id="popupButtonCal" showOn="button" />  
+                    </td>
+                    <td>
+                        Shipping Times
+                    </td>
+                    <td>
+                        <h:inputText value="#{pickupBean.ship.startshiptime}" size="5"/> to 
+                        <h:inputText value="#{pickupBean.ship.endshiptime}" size="5"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Secondary Number:
+                    </td>
+                    <td>
+                        <h:inputText value="#{pickupBean.ship.secondarynum}"/>
+                    </td>
+                </tr>
+                <tr/>
+                <tr>
+                    <td>
+                        Trailer Selection: Spot/Pick 
+                    </td>
+                    <td>
+                        <h:inputText value="#{pickupBean.ship.spotpick}" size="1"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Appointment Required (Y/N): 
+                    </td>
+                    <td>
+                        <h:inputText value="#{pickupBean.ship.appointmentreq}" size="1"/>
+                    </td>
+                </tr>
+            </table>
+            <h:commandButton id="fetchShip" value="Fetch Shipping">
+                <f:ajax listener="#{pickupBean.fetchShipper}" render="@form" />
+            </h:commandButton>
+            <h:commandButton action="#{pickupBean.nextPage}" value="Next"/>
+        </h:form>
     </h:body>
 </html>
 

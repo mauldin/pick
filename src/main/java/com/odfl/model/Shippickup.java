@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author sam
  */
 @Entity
-@Table(name = "SHIPPICKUP")
+@Table(name = "SHIPPICKUP", schema = "SAM")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Shippickup.findAll", query = "SELECT s FROM Shippickup s"),
@@ -81,6 +81,7 @@ public class Shippickup implements Serializable {
     private Shipper shipperid;
 
     public Shippickup() {
+        shipperid = new Shipper();
     }
 
     public Shippickup(Integer spid) {

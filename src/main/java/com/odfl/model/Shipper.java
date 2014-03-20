@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author sam
  */
 @Entity
-@Table(name = "SHIPPER")
+@Table(name = "SHIPPER", schema = "SAM")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Shipper.findAll", query = "SELECT s FROM Shipper s"),
@@ -80,6 +80,8 @@ public class Shipper implements Serializable {
     private Collection<Shippickup> shippickupCollection;
 
     public Shipper() {
+        addressid = new Address();
+        contactid = new Contact();
     }
 
     public Shipper(Integer shipperid) {

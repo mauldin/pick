@@ -7,7 +7,6 @@
 package com.odfl.model;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -28,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author sam
  */
 @Entity
-@Table(name = "ADDRESS")
+@Table(name = "ADDRESS", schema = "SAM")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a"),
@@ -64,13 +63,14 @@ public class Address implements Serializable {
     @Size(min = 1, max = 5)
     @Column(name = "ZIP")
     private String zip;
-    @OneToMany(mappedBy = "addressid")
-    private Collection<Shipper> shipperCollection;
+    @OneToOne(mappedBy = "addressid")
+    private Shipper shipper;
     @JoinColumn(name = "STATEID", referencedColumnName = "STATEID")
     @ManyToOne(optional = false)
     private Statetb stateid;
 
     public Address() {
+        stateid = new Statetb();
     }
 
     public Address(Integer addressid) {
@@ -126,12 +126,12 @@ public class Address implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Shipper> getShipperCollection() {
-        return shipperCollection;
+    public Shipper getShipper() {
+        return shipper;
     }
 
-    public void setShipperCollection(Collection<Shipper> shipperCollection) {
-        this.shipperCollection = shipperCollection;
+    public void setShipper(Shipper shipper) {
+        this.shipper = shipper;
     }
 
     public Statetb getStateid() {
