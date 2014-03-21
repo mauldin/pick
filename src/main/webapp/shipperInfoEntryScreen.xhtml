@@ -4,7 +4,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:head>
         <title>Shipper Information Entry Screen</title>
         <h:outputScript library="primefaces" name="jquery/jquery.js" />
@@ -34,17 +35,19 @@
                     <td>user todo</td>
                 </tr>
             </table>
-            <h:messages class="message"/>
+            <!--<h:messages class="message"/>-->
+            <h:message for="cfirstnm"/>
+            <h:message for="clastnm"/>
             <table class="data mediumFont" >
                 <tr>
                     <td class="column1">
                         <h:outputText value="Caller Name:"/>
                     </td>
                     <td class="column2">
-<!--                        <f:validateBean disabled="true">-->
-                            <h:inputText id="cfirstnm" value="#{pickupBean.caller.firstname}" required="false"/>
-                            <h:inputText id="clastnm" value="#{pickupBean.caller.lastname}" required="false"/> 
-<!--                        </f:validateBean>-->
+                        <f:validateBean disabled="true">
+                            <h:inputText id="cfirstnm" binding="#{firstname}" value="#{pickupBean.caller.firstname}" required="false"/>
+                            <h:inputText id="clastnm" binding="#{lastname}" value="#{pickupBean.caller.lastname}" required="false"/> 
+                        </f:validateBean>
                         <p:watermark for="cfirstnm" value="First Name"/>
                         <p:watermark for="clastnm" value="Last Name"/>
                     </td>
